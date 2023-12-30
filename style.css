@@ -1,0 +1,25 @@
+section{
+    width: fit-content;
+}
+ul{
+    list-style: none;
+    padding: 0;
+}
+ul > li:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+#current-image-container{
+    background-color: black;
+    color: white;
+    padding: 20px 15px;
+}
+#current-image-container > img{
+    width: 80%;
+}
+/* Medi queries */
+@media screen and (max-width: 768px){
+    #current-image-container > img{
+        width: 100%;
+    }
+}
