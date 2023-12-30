@@ -1,14 +1,22 @@
 // This function should fetch the data for the selected date from the NASA API and display it in the UI.
 // It should also save the date to local storage and also show it in the search history unordered list.
 async function getImageOfTheDay(date) {
-  const response = await fetch(
-    `https://api.nasa.gov/planetary/apod?date=${date}&api_key=${your_api_key}`
-  );
-  const myData = await response.json();
-  if (date == new Date().toISOString().split("T")[0]) {
-    displayData(myData, true);
-  } else {
-    displayData(myData, false);
+  try {
+    const response = await fetch(
+      `https://api.nasa.gov/planetary/apod?date=${date}&api_key=${your_api_key}`
+    );
+    if (!response.ok){
+      throw new Error(`API fetching failed: Please check the API_key or Fetch url`);
+    }
+    const myData = await response.json();
+    if (date == new Date().toISOString().split("T")[0]) {
+      displayData(myData, true);
+    } else {
+      displayData(myData, false);
+    }
+  } catch (err) {
+    // alert("API fetching failed: Please check the API_key or Fetch url");
+    alert(err.message);
   }
 }
 
